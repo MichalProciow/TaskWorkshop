@@ -36,6 +36,7 @@ public class TaskManager {
                     break;
                 case "exit":
                     isDone = true;
+                    exit(arrayConverter(readFile()));
                     stringMethod("Bye, bye.");
                     break;
                 default:
@@ -78,7 +79,7 @@ public class TaskManager {
     }
 
     public static void add(String[][] arrayString) {
-        StringBuilder fileContents = readFile();
+        readFile();
         String description = readText("Please add task description");
         String dueDate = readText("Please add due date");
         String importance = readText("Please add importance");
@@ -91,12 +92,12 @@ public class TaskManager {
     private static String readText(String string) {
         stringMethod(string);
         String dueDatePattern="\\d{2}-\\d{2}-\\d{4}";
-        boolean truefalse=false;
+        boolean importancePattern=false;
 
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine().trim();
         if (input.equals("true") || input.equals("false")) {
-                        truefalse=true;
+                        importancePattern=true;
         }
         while (input.isEmpty()) {
             System.out.println(string);
@@ -106,11 +107,11 @@ public class TaskManager {
             stringMethod("Please provide date in correct format");
             input=scanner.nextLine();
         }
-        while (string.contains("importance")&&!truefalse) {
+        while (string.contains("importance")&&!importancePattern) {
             stringMethod("Please provide true/false");
             input=scanner.nextLine();
             if (input.equals("true") || input.equals("false")) {
-                truefalse=true;
+                importancePattern=true;
             }
 
         }
@@ -181,9 +182,7 @@ public class TaskManager {
 
             } catch (IndexOutOfBoundsException e) {
                 stringMethod("Incorrect argument passed. Please give number greater or equal 0");
-
             }
-
         }
     }
 
