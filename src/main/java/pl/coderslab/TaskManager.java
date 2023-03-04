@@ -11,9 +11,7 @@ import java.util.Scanner;
 
 public class TaskManager {
     public static void main(String[] args) {
-
         selectOption();
-
     }
 
     public static void selectOption() {
@@ -185,7 +183,6 @@ public class TaskManager {
             }
         }
     }
-
     public static void exit(String[][] arrayString) {
         writeFile(arrayString);
     }
